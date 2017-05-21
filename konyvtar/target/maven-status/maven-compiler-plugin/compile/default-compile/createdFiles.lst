@@ -1,0 +1,17 @@
+alapok\Konyv.class
+genericdaoservice\GenericDaoService.class
+resourceok\FilmResource.class
+alapok\Hangoskonyv.class
+implementaciok\HangoskonyvServiceImpl.class
+genericdaoservice\GenericDaoServiceImpl.class
+implementaciok\KonyvServiceImpl.class
+interfacek\HangoskonyvService.class
+hu\javagladiators\framework\web\HeaderFilter.class
+interfacek\KonyvService.class
+interfacek\FilmService.class
+alapok\Film.class
+resourceok\HangoskonyvResource.class
+implementaciok\FilmServiceImpl.class
+resourceok\KonyvResource.class
+alapok\Kozos.class
+app\Rapplication.class

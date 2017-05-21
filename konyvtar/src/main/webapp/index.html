@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Start Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <h1>Hello World!</h1>
+        <h2> Könyv felvitel </h2>
+        <form action="http://localhost:8080/konyvtar-1.0-SNAPSHOT/rest/konyv/hozzaad" method="POST">
+            <label for="cim">Cim</label>
+            <input type="text" id="cim" name="cim" placeholder="Cim">
+            <label for="kiado">Kiado</label>
+            <input type="text" id="kiado" name="kiado" placeholder="Kiado">
+            <label for="megjelenesiev">Megjelenesi ev</label>
+            <input type="text" id="megjelenesiev" name="megjelenesiev" placeholder="Megjelenesi ev">
+            <label for="iro">Iro</label>
+            <input type="text" id="iro" name="iro" placeholder="Iro">
+            
+            <button type="submit">Hozzáad</button>
+        </form>
+        <hr>
+        <h2> Hangoskönyv felvitel </h2>
+        <form action="http://localhost:8080/konyvtar-1.0-SNAPSHOT/rest/hangoskonyv/hozzaad" method="POST">
+            <label for="cim">Cim</label>
+            <input type="text" id="cim" name="cim" placeholder="Cim">
+            <label for="kiado">Kiado</label>
+            <input type="text" id="kiado" name="kiado" placeholder="Kiado">
+            <label for="megjelenesiev">Megjelenesi ev</label>
+            <input type="text" id="megjelenesiev" name="megjelenesiev" placeholder="Megjelenesi ev">
+            <label for="hossz">Hossz</label>
+            <input type="text" id="hossz" name="hossz" placeholder="Hossz">
+            
+            <button type="submit">Hozzáad</button>
+        </form>
+        <hr>
+        <h2> Film felvitel </h2>
+        <form action="http://localhost:8080/konyvtar-1.0-SNAPSHOT/rest/film/hozzaad" method="POST">
+            <label for="cim">Cim</label>
+            <input type="text" id="cim" name="cim" placeholder="Cim">
+            <label for="kiado">Kiado</label>
+            <input type="text" id="kiado" name="kiado" placeholder="Kiado">
+            <label for="megjelenesiev">Megjelenesi ev</label>
+            <input type="text" id="megjelenesiev" name="megjelenesiev" placeholder="Megjelenesi ev">
+            <label for="hossz">Hossz</label>
+            <input type="text" id="hossz" name="hossz" placeholder="Hossz">
+            <label for="felbontas">Felbontas</label>
+            <input type="text" id="felbontas" name="felbontas" placeholder="Felbontas">
+            
+            <button type="submit">Hozzáad</button>
+        </form>
+        <hr>
+        <h2> Könyv Kereső (cim + iro)</h2>
+        <select id="konyv">            
+        </select>
+        <h2> Hangoskönyv Kereső (cim + hossz)</h2>
+        <select id="hangoskonyv">            
+        </select>
+        <h2> Film Kereső (cim + kiado)</h2>
+        <select id="film">            
+        </select>
+        <script>
+                 
+              loadLists("http://localhost:8080/konyvtar-1.0-SNAPSHOT/rest/konyv/osszes","konyv","cim","iro");
+              loadLists("http://localhost:8080/konyvtar-1.0-SNAPSHOT/rest/hangoskonyv/osszes","hangoskonyv","cim","hossz");
+              loadLists("http://localhost:8080/konyvtar-1.0-SNAPSHOT/rest/film/osszes","film","cim","kiado");
+    
+    
+                
+            function loadLists(url, id, tulajd1, tulajd2){
+                var xmlHttp = new XMLHttpRequest();
+                 xmlHttp.open("GET", url , true);
+                 xmlHttp.setRequestHeader("Content-Type","application/json");
+                 xmlHttp.responseType = "json";
+    
+                 xmlHttp.onload = function()
+                 {
+                  var selectedList = document.getElementById(id);            
+              
+                  for(var x in xmlHttp.response)
+                  {
+                     var option = document.createElement("option");                    
+                     option.text = xmlHttp.response[x][tulajd1]+ " " +xmlHttp.response[x][tulajd2];
+                   
+                     option.value = xmlHttp.response[x].id;
+                     selectedList.appendChild(option);
+                  }
+                 };                 
+                 xmlHttp.send();
+            }
+                  
+                 
+                
+                           
+             
+        </script>
+    </body>
+    
+</html>
